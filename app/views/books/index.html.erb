@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Image</th>
       <th>Title</th>
       <th>Isbn</th>
       <th>Asin</th>
@@ -17,11 +18,12 @@
   <tbody>
     <% @books.each do |book| %>
       <tr>
+        <td><%= create_img_tag book.asin %></td>
         <td><%= book.title %></td>
         <td><%= book.isbn %></td>
         <td><%= book.asin %></td>
         <td><%= book.publisher %></td>
-        <td><%= book.creater %></td>
+        <td><%= book.author %></td>
         <td><%= link_to 'Show', book %></td>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>

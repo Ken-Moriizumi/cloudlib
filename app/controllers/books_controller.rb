@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery :except => ["create"]
 
   # GET /books
   # GET /books.json
@@ -24,6 +25,14 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
+    # for validation
+    isbn = book_params[:isbn] ||= ""
+    item = get_book_by_isbn(isbn)
+    if(item.nil? && book_params[:title] == "")
+        render status:404, json: {status: "ng", code: 400, content: {message: "No such isbn code"}}
+        return
+    end 
+    book_params = set_response_to_book_params(item,isbn) unless item.nil?
     @book = Book.new(book_params)
 
     respond_to do |format|
@@ -66,9 +75,20 @@ class BooksController < ApplicationController
     def set_book
       @book = Book.find(params[:id])
     end
+    
+    def set_response_to_book_params(item,isbn)
+      p item["volumeInfo"]["title"] ||= ""
+      book = Hash.new
+      book[:title] = item["volumeInfo"]["title"] ||=""
+      book[:isbn] = isbn ||=""
+      book[:asin] = item["volumeInfo"]["asin"] ||=""
+      book[:author] = item["volumeInfo"]["authors"].join(", ") 
+      book[:publisher] = item["volumeInfo"]["publisher"] ||= ""
+      return book
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:title, :isbn, :asin, :publisher, :creater)
+      params.require(:book).permit(:title, :isbn, :asin, :publisher, :author)
     end
 end

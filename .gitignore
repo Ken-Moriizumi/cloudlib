@@ -19,18 +19,19 @@
 .byebug_history
 
 /.bundle
-/vendor/bundle
+vendor/bundle
+/vendor/
 /vendor/bundler/
 /db/*.sqlite3
 /db/*.sqlite3-journal
-/log/*
-/tmp/*
+log/*
+tmp/*
 !/log/.keep
 !/tmp/.keep
 /uploads/tmp/
-/config/settings.local.yml
-/config/settings/*.local.yml
-/config/environments/*.local.yml
-/config/database.yml
-/config/secrets.yml
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
+config/database.yml
+config/secrets.yml
 .DS_Store
