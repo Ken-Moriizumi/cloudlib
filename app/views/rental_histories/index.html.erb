@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Rental Histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Book</th>
+      <th>Employee</th>
+      <th>Borrow date</th>
+      <th>Return date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rental_histories.each do |rental_history| %>
+      <tr>
+        <td><%= rental_history.book_id %></td>
+        <td><%= rental_history.employee_id %></td>
+        <td><%= rental_history.borrow_date %></td>
+        <td><%= rental_history.return_date %></td>
+        <td><%= link_to 'Show', rental_history %></td>
+        <td><%= link_to 'Edit', edit_rental_history_path(rental_history) %></td>
+        <td><%= link_to 'Destroy', rental_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Rental History', new_rental_history_path %>
