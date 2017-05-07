@@ -16,8 +16,8 @@
   <tbody>
     <% @rental_histories.each do |rental_history| %>
       <tr>
-        <td><%= rental_history.book_id %></td>
-        <td><%= rental_history.employee_id %></td>
+        <td><%= rental_history.book.title %></td>
+        <td><%= rental_history.employee.name %></td>
         <td><%= rental_history.borrow_date %></td>
         <td><%= rental_history.return_date %></td>
         <td><%= link_to 'Show', rental_history %></td>
