@@ -46,9 +46,9 @@ class RentalHistoriesController < ApplicationController
         @rental_history = RentalHistory.new(book_id: @book.id, employee_id: @emp.id, borrow_date: Date.today)
     end
     if @rental_history.save
-      render json: {status: "ok", code: 200, content: {message: @rental_history}}
+        render json: {status: "ok", code: 200, content: {message: @rental_history}}
     else
-      render json: {status: "ng", code: 500, content: {message: "Internal Server Error"}}
+        raise StandardError 
     end
   end
 
@@ -93,10 +93,6 @@ class RentalHistoriesController < ApplicationController
     def rental?
       return true unless @rental.nil?
       false
-    end
-  
-    def param_error
-       render json: {status: "ng", code: 400, content: {message: "Invalid Parameter Value"}}
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
