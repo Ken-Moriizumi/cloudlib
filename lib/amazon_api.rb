@@ -5,9 +5,9 @@ require 'rexml/document'
 require 'active_support/core_ext'
 
    Amazon::Ecs.options = {
-         associate_tag:     'moricon-22',
-         AWS_access_key_id: 'AKIAILFY72FKJ377LXZA',
-         AWS_secret_key:  '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' 
+         associate_tag:     ENV['ASSOCIATE_TAG'],
+         AWS_access_key_id: ENV['AWS_ACCESS_KEY'],
+         AWS_secret_key:    ENV['AWS_CECRET_KEY']
    }
    def get_book_by_isbn(isbn)
       #Amazon::Ecs.debug = true
