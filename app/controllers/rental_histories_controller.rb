@@ -1,5 +1,6 @@
 class RentalHistoriesController < ApplicationController
   before_action :set_rental_history, only: [:show, :edit, :update, :destroy]
+  before_action :set_rental, only: [:rental]
 
   # GET /rental_histories
   # GET /rental_histories.json
@@ -37,6 +38,21 @@ class RentalHistoriesController < ApplicationController
     end
   end
 
+  def rental
+    if rental?
+        @rental.return_date = Date.today
+        @rental_history = @rental
+    else
+        @rental_history = RentalHistory.new(book_id: @book.id, employee_id: @emp.id, borrow_date: Date.today)
+    end
+    if @rental_history.save
+      render json: {status: "ok", code: 200, content: {message: @rental_history}}
+    else
+      render json: {status: "ng", code: 500, content: {message: "Internal Server Error"}}
+    end
+  end
+
+
   # PATCH/PUT /rental_histories/1
   # PATCH/PUT /rental_histories/1.json
   def update
@@ -66,9 +82,26 @@ class RentalHistoriesController < ApplicationController
     def set_rental_history
       @rental_history = RentalHistory.find(params[:id])
     end
+    
+    def set_rental
+      raise ClientError if params[:employee_no].nil? || params[:book_isbn].nil? 
+      @emp = Employee.find_by(no: params[:employee_no])
+      @book = Book.find_by(isbn: params[:book_isbn])
+      @rental = RentalHistory.where("book_id = :book_id and employee_id = :employee_id ", book_id: @book.id, employee_id: @emp.id).where( return_date: nil).order("created_at desc").first
+    end
+    
+    def rental?
+      return true unless @rental.nil?
+      false
+    end
+  
+    def param_error
+       render json: {status: "ng", code: 400, content: {message: "Invalid Parameter Value"}}
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rental_history_params
       params.require(:rental_history).permit(:book_id, :employee_id, :borrow_date, :return_date)
     end
+    
 end
