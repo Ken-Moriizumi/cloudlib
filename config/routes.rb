@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :rental_histories do
      collection do
        get 'rental'
+       post 'rental'
      end
   end
   resources :departments

@@ -1,6 +1,7 @@
 class RentalHistoriesController < ApplicationController
   before_action :set_rental_history, only: [:show, :edit, :update, :destroy]
   before_action :set_rental, only: [:rental]
+  protect_from_forgery :except => ["rental"]
 
   # GET /rental_histories
   # GET /rental_histories.json

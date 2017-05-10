@@ -49,11 +49,9 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
             <li><%= link_to "書籍一覧", "/books"  %></li>
-            <% if user_signed_in? %>
             <li><%= link_to "社員一覧", "/employees"  %></li>
             <li><%= link_to "部署", "/departments"  %></li>
             <li><%= link_to "貸出履歴", "/rental_histories"  %></li>
-            <% end %>
           </ul>
           <p class="navbar-text navbar-right"><%= create_nav_bar_of_sign_in %></p>
         </div>
