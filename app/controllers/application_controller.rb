@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
   class ClientError < StandardError; end
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
+
   protect_from_forgery with: :exception
   rescue_from ClientError, :with => :error_400
   rescue_from StandardError, :with => :error_500
@@ -25,5 +28,9 @@ class ApplicationController < ActionController::Base
     else
         render status:500, json: {status: "ng", code: 500, content: {message: "Internal Server Error(MySQL)"}}
     end
+  end
+
+private
+  def configure_permitted_parameters
   end
 end
