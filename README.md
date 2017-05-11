@@ -20,9 +20,9 @@
 ## Installation
 
 1. Installation
-* このリポジトリをclone
+    * このリポジトリをclone
 2. set env
-* 環境変数を設定
+    * 環境変数を設定
 ```
 ### rails settings
 RAILS_ROOT=/root/cloudlib
@@ -45,11 +45,15 @@ SECRET_KEY_BASE_DEVELOPMENT=key_base
 SECRET_KEY_BASE_TEST=key_base
 
 ```
-3. 起動
+3.  bundle install
 ```
 bundle Install
+```
+4.  起動
+```
+bundle exec rails s
 ```
 
 ## License
 
-[MIT](http://b4b4r07.mit-license.org)
+
