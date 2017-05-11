@@ -17,12 +17,8 @@
 - ruby 2.2.2+
 - Rails 5.1
 
-## Installation
+## ENV
 
-1. Installation
-    * このリポジトリをclone
-2. set env
-    * 環境変数を設定<br>
 ```
 ### rails settings
 RAILS_ROOT=/root/cloudlib
@@ -45,11 +41,15 @@ SECRET_KEY_BASE_DEVELOPMENT=key_base
 SECRET_KEY_BASE_TEST=key_base
 
 ```
-3.  bundle install
+
+## Instration 
+
 ```
 bundle Install
 ```
-4.  起動
+
+## Usage
+
 ```
 bundle exec rails s
 ```
