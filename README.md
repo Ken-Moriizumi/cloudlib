@@ -1,24 +1,59 @@
-# README
+# Departmets-Library
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
 
-Things you may want to cover:
+* 部署の図書管理アプリ
+* Raspberypi + Rails + Unicorn
 
-* Ruby version
+## Features
 
-* System dependencies
+- 部署の蔵書情報の管理
+    - 書籍のISBN（バーコードの１段目）によりAmazonから蔵書情報を取得して登録できます
+- 貸出管理
+    - 社員証とバーコードスキャンによる貸出・返却が可能
 
-* Configuration
+## Requirement
 
-* Database creation
+- ruby 2.2.2+
+- Rails 5.1
 
-* Database initialization
+## ENV
 
-* How to run the test suite
+```
+### rails settings
+RAILS_ROOT=/root/cloudlib
+ASSOCIATE_TAG=associate_tag
+AWS_ACCESS_KEY=aws_access_key
+AWS_CECRET_KEY=aws_cert_key
 
-* Services (job queues, cache servers, search engines, etc.)
+# production
+CLOUDLIB_DATABASE_USERNAME=username
+CLOUDLIB_DATABASE_PASSWORD=passward
+SECRET_KEY_BASE=kye_base
 
-* Deployment instructions
+# development
+CLOUDLIB_DATABASE_USERNAME_DEFAULT=username
+CLOUDLIB_DATABASE_PASSWORD_DEFAULT=passward
+CLOUDLIB_DATABASE_HOST_DEFAULT=dbhost
+SECRET_KEY_BASE_DEVELOPMENT=key_base
 
-* ...
+# test
+SECRET_KEY_BASE_TEST=key_base
+
+```
+
+## Instration 
+
+```
+bundle Install
+```
+
+## Usage
+
+```
+bundle exec rails s
+```
+
+## License
+
+

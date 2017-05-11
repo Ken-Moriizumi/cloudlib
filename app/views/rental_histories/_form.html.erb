@@ -1,37 +1,55 @@
-<%= form_with(model: rental_history, local: true) do |form| %>
-  <% if rental_history.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(rental_history.errors.count, "error") %> prohibited this rental_history from being saved:</h2>
+<%= form_for @rental_history, :html => { :class => "form-horizontal rental_history" } do |f| %>
 
-      <ul>
-      <% rental_history.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <% if @rental_history.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@rental_history.errors.count, "error") %> prohibited this rental_history from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @rental_history.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :book_id %>
-    <%= form.number_field :book_id, id: :rental_history_book_id %>
+  <div class="form-group">
+    <%= f.label :book_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.collection_select :book_id, Book.all, :id, :title %>
+    </div>
+    <%=f.error_span(:book_id) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :employee_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.collection_select :employee_id, Employee.all, :id, :name %>
+    </div>
+    <%=f.error_span(:employee_id) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :borrow_date, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :borrow_date, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:borrow_date) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :return_date, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :return_date, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:return_date) %>
   </div>
 
-  <div class="field">
-    <%= form.label :employee_id %>
-    <%= form.number_field :employee_id, id: :rental_history_employee_id %>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                rental_histories_path, :class => 'btn btn-default' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :borrow_date %>
-    <%= form.date_select :borrow_date, id: :rental_history_borrow_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :return_date %>
-    <%= form.date_select :return_date, id: :rental_history_return_date %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
