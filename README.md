@@ -8,9 +8,9 @@
 ## Features
 
 - 部署の蔵書情報の管理
-   - 書籍のISBN（バーコードの１段目）によりAmazonから蔵書情報を取得して登録できます
+    - 書籍のISBN（バーコードの１段目）によりAmazonから蔵書情報を取得して登録できます
 - 貸出管理
-   - 社員証とバーコードスキャンによる貸出・返却が可能
+    - 社員証とバーコードスキャンによる貸出・返却が可能
 
 ## Requirement
 
@@ -22,7 +22,7 @@
 1. Installation
 * このリポジトリをclone
 2. set env
-* 動作に必要な環境変数
+* 環境変数を設定
 ```
 ### rails settings
 RAILS_ROOT=/root/cloudlib
