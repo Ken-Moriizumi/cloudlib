@@ -22,7 +22,7 @@
 1. Installation
     * このリポジトリをclone
 2. set env
-    * 環境変数を設定
+    * 環境変数を設定<br>
 ```
 ### rails settings
 RAILS_ROOT=/root/cloudlib
